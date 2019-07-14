@@ -11,7 +11,7 @@ import { firestore, convertCollectionsSnapshotToMap} from '../../firebase/fireba
 import { updateCollections } from '../../redux/shop/shop.actions';
 
 const CollectionsOverviewWithSpinner = WithSpinner(CollectionsOverview);
-const CollectionPageWithSpinner = WithSpinner(CollectionsOverview);
+const CollectionPageWithSpinner = WithSpinner(CollectionPage);
  
 class ShopPage extends React.Component {	
 	state = {
@@ -24,12 +24,11 @@ class ShopPage extends React.Component {
 		const { updateCollections } = this.props;
 		const collectionRef = firestore.collection('collections');
 
-		collectionRef.onSnapshot(async snapshot => {
+		collectionRef.get().then(async snapshot => {
 			const collectionMap = convertCollectionsSnapshotToMap(snapshot);
 			updateCollections(collectionMap);
 			this.setState({loading: false});
 		})
-
 	}
 
 	render() {
@@ -39,7 +38,7 @@ class ShopPage extends React.Component {
 		return (
 			<div className='shop-page'>
 				<Route exact path={`${match.path}`} render={(props) => <CollectionsOverviewWithSpinner isLoading={loading} {...props}/>}/>
-				<Route path={`${match.path}/:collectionId`} render={(props) => <CollectionsOverviewWithSpinner isLoading={loading} {...props}/>}/>
+				<Route path={`${match.path}/:collectionId`} render={(props) => <CollectionPageWithSpinner isLoading={loading} {...props}/>}/>
 			</div>
 		);
 	}	
