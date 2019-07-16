@@ -32,14 +32,6 @@ class SignUp extends React.Component {
 		}
 
 		signUpStart({email, password, displayName});
-
-		this.setState({
-			displayName: '',
-			email: '',
-			password: '',
-			confirmPassword:''
-		})
-
 	}
 
 	handleChange = event => {
