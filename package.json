@@ -4,7 +4,7 @@
   "engines": {
     "node": "10.15.3",
     "npm": "6.4.1"
-  }
+  },
   "scripts": {
     "client": "cd client && npm start",
     "server": "nodemon server.js",
@@ -19,6 +19,7 @@
     "cors": "2.8.5",
     "dotenv": "7.0.0",
     "express": "^4.16.4",
+    "nodemon": "^1.19.1",
     "stripe": "6.28.0"
   },
   "devDependencies": {
